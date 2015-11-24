@@ -132,8 +132,8 @@ namespace Thinktecture.AuthorizationServer
             var token = new JwtSecurityToken(
                 issuer: globalConfiguration.Issuer,
                 audience: request.Application.Audience,
-                claims: claims,
-                lifetime: new Lifetime(DateTime.UtcNow, DateTime.UtcNow.AddMinutes(request.Application.TokenLifetime)),
+                claims: claims, 
+                expires: DateTime.UtcNow.AddMinutes(request.Application.TokenLifetime),
                 signingCredentials: request.Application.SigningCredentials);
 
             return token;
